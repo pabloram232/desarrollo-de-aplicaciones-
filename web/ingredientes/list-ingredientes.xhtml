@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>#{str.carreraListTitle}</title>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="contenido">
+			<h2>#{str.ingredientListTitle}</h2>
+			<h:form>
+				<p:commandButton value="#{str.buttonAdd}"
+					action="#{ingredienteBean.agregar()}"></p:commandButton>
+			</h:form>
+			<p:dataTable value="#{ingredienteBean.ingredientes}" var="i">
+				<p:column headerText="#{str.action}">
+				<h:form>
+					<h:commandButton value="#{str.buttonEdit}"
+						action="#{ingredienteBean.editar(i)}"></h:commandButton>
+					</h:form>
+				</p:column>
+				<p:column headerText="#{str.ingredientClasificationHeader}">
+					<p:outputLabel value="#{i.clasificacion}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="#{str.ingredientNameHeader}">
+					<p:outputLabel value="#{i.nombre}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="#{str.ingredientPriceHeader}">
+                                    <p:outputLabel value="#{i.precio}"></p:outputLabel>
+				</p:column>
+				
+				<p:column headerText="#{str.ingredientTortaHeader}">
+					<p:outputLabel value="#{i.torta.nombre}"></p:outputLabel>
+				</p:column>
+                            <p:column headerText="#{str.ingredientNameHeader}">
+                                <p:outputLabel value="#{i.torta.nombre}"></p:outputLabel>
+				</p:column>
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
